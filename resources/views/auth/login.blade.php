@@ -1,73 +1,92 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Login|| Task Managment</title>
+ <!--Bootsrap 4 CDN-->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+ <!--Fontawesome CDN-->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+ <!--Custom styles-->
+ <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+ <link rel="stylesheet" type="text/css" href="{{ asset('login_data/style.css') }}">
+</head>
+<body>
 
-@section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+ <div class="d-flex justify-content-center h-100">
+  <div class="card">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+   <div class="card-header">
+    <h3>Log In</h3>
+    <div class="d-flex justify-content-end social_icon">
+     <span><i class='fas fa-tasks'></i></span>
     </div>
+   </div>
+   
+   <div class="card-body">
+    <form method="POST" action="{{ route('login') }}">
+      @csrf
+
+       @if($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         @foreach($errors->all() as $error)
+          <strong>{{$error}}</strong><br>
+         @endforeach
+        </div>
+       @endif
+       
+     <div class="input-group form-group">
+      <div class="input-group-prepend">
+       <span class="input-group-text"><i class="fas fa-user"></i></span>
+      </div>
+      <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="username">            
+     </div>
+
+     <div class="input-group form-group">
+      <div class="input-group-prepend">
+       <span class="input-group-text"><i class="fas fa-key"></i></span>
+      </div>
+      <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="password"  autocomplete="current-password" placeholder="password" required>
+     </div>
+
+     <div class="row align-items-center remember">
+      <input type="checkbox" onclick="myFunction()">Show Password
+     </div>
+     <div class="form-group">
+      <input type="submit" value="Login" class="btn float-right login_btn">
+     </div>
+    </form>
+   </div>
+
+   <div class="card-footer">
+    <div class="d-flex justify-content-center">
+     <a href="#" class="text-white">Forgot your password?</a>
+    </div>
+   </div>
+
+  </div>
+ </div>
 </div>
-@endsection
+</body>
+
+<!-----password show----->
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</html>
+
+
+
