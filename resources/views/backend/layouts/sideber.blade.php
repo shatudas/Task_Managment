@@ -1,3 +1,9 @@
+@php
+ $prefix = Request::route()->getPrefix();
+ $route = Route::current()->getName();
+@endphp
+
+
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
@@ -19,19 +25,25 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
-          <li class="nav-item">
+          <li class="nav-item {{($prefix=='/user')?'menu-open':''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Layout Options
+                User
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{ route('user.add') }}" class="nav-link {{($route=='user.add')?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Add User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('user.view') }}" class="nav-link {{($route=='user.view')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View User</p>
                 </a>
               </li>
             </ul>
