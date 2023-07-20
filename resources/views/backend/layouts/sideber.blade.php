@@ -6,7 +6,7 @@
 
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
      <center>
       <span class="brand-text font-weight-light" >Task Management</span>
      </center>
@@ -17,7 +17,7 @@
 
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info" align="center">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="{{ route('home') }}" class="d-block">Alexander Pierce</a>
         </div>
       </div>
 

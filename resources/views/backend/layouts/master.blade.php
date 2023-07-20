@@ -25,6 +25,23 @@
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css">
+
+  <!-------datatable-------->
+  <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+
+
+   <style type="text/css">
+    .notify-corner
+    {
+      z-index:10000;
+    }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -81,6 +98,24 @@
    @yield('content')
 
 
+   <!----notification script---->
+   @if(session()->has('success'))
+    <script type="text/javascript">
+      $(function(){
+        $.notify("{{session()->get('success')}}",{globalPosition:'top right',className:'sucess'});
+      })
+    </script>
+   @endif
+
+   @if(session()->has('error'))
+    <script type="text/javascript">
+      $(function(){
+        $.notify("{{session()->get('error')}}",{globalPosition:'top right',className:'error'});
+      })
+    </script>
+   @endif
+
+
 
   <footer class="main-footer">
     <strong>Copyright &copy; 2023 <a href="#">Task Management</a>.</strong>
@@ -128,5 +163,43 @@
 <script src="{{ asset('backend') }}/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('backend') }}/dist/js/pages/dashboard.js"></script>
+
+
+<script src="{{ asset('backend') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/jszip/jszip.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+<!-- jquery-validation -->
+<script src="{{ asset('backend') }}/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/jquery-validation/additional-methods.min.js"></script>
+<!-----handlebars---------->
+
+
+
+
+<!-----image show script------->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#image').change(function(e){
+   var reader = new FileReader();
+   reader.onload=function(e){
+    $('#showImage').attr('src',e.target.result);
+   } 
+   reader.readAsDataURL(e.target.files['0']);
+   });
+  });
+</script>
+
+
 </body>
 </html>
