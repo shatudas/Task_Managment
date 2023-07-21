@@ -34,6 +34,10 @@
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
 
    <style type="text/css">
     .notify-corner
@@ -182,10 +186,26 @@
 <!-- jquery-validation -->
 <script src="{{ asset('backend') }}/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="{{ asset('backend') }}/plugins/jquery-validation/additional-methods.min.js"></script>
-<!-----handlebars---------->
 
 
 
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 
 <!-----image show script------->
 <script type="text/javascript">
@@ -199,6 +219,36 @@
    });
   });
 </script>
+
+
+
+<!--------delete-------->
+<script type="text/javascript">
+ $(function(){
+   $(document).on('click','#delete',function(e){
+     e.preventDefault();
+     var link = $(this).attr("href");
+     Swal.fire({
+     title: 'Are you sure?',
+     text: "Delete this data !",
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+    if (result.isConfirmed){
+    window.location.href = link;
+    Swal.fire(
+     'Deleted!',
+     'Your file has been deleted.',
+     'success')
+    }
+   })
+  });
+ });
+</script>
+
 
 
 </body>

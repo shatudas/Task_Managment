@@ -52,7 +52,9 @@
             <td>{{ $key+1 }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>Image</td>
+            <td align="center">
+              <img src="{{ (!empty($user->image))?url('upload/user_image/'.$user->image):url('upload/No-image.jpg') }}" style="width:80px; height:80px; border-radius:50%; border:1px solid #ccc;" >
+            </td>
             <td align="center">
              @if($user->role_id == '1')
              <a class="btn btn-sm btn-primary">
@@ -75,22 +77,42 @@
            </td>
 
             <td align="center">
-             @if($user->status == '0')
-              <a href="{{ route('user.inactive',$user->id) }}" class="btn btn-success btn-sm " > Publish </a>
-              @else
-              <a href="{{ route('user.active',$user->id) }}" class="btn btn-danger btn-sm"  > Draft </a>
-             @endif 
+             @if($user->role_id == 1)
+              <span class="btn btn-primary btn-sm">Publish</span>
+             @else
+               @if($user->status == '0')
+                <a href="{{ route('user.inacative',$user->id) }}" class="btn btn-success btn-sm " > Publish </a>
+                @else
+                <a href="{{ route('user.active',$user->id) }}" class="btn btn-danger btn-sm"  > Draft </a>
+               @endif 
+             @endif
             </td>
            
             <td align="center">
+             @if($user->role_id == 1)
+             <span class="btn btn-sm btn-info">Super Admin</span>
+             @else
              <div class="dropdown ">
               <button class="btn btn-sm btn-outline-primary text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" title="Edit" href="{{ route('user.edit',$user->id) }}">Edit</a>
-                <a class="dropdown-item" title="Delete" href="{{ route('user.delete',$user->id) }}">Delete</a>
+                <a class="dropdown-item" title="Delete"  id="delete" href="{{ route('user.delete',$user->id) }}">Delete</a>
               </div>
              </div>
+             @endif
+
             </td>
+
+
+           {{--  <td>
+                     @if($user->delete_able == true)
+                      <a title="Edit" href="{{route('user.edit',$user->id)}}" class="btn btn-sm btn-primary" ><i class="fa fa-edit"></i></a>
+
+                      <a title="Delete" href="{{route('user.delete',$user->id)}}" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                      @else
+                       <small><a class="btn btn-warning btn-sm p-0 m-0 text-white"> Super Admin </a></small>
+                     @endif
+                    </td> --}}
 
           </tr>
          @endforeach

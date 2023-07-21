@@ -34,6 +34,6 @@ Route::prefix('user')->group(function()
 	Route::post('/update/{id}','Backend\UserController@update')->name('user.update');
 	Route::get('/delete/{id}','Backend\UserController@delete')->name('user.delete');
 	Route::get('/active/{id}','Backend\UserController@active')->name('user.active');
-	Route::get('/inactive/{id}','Backend\UserController@inactive')->name('user.inactive');
+	Route::get('/inacative/{id}','Backend\UserController@inacative')->name('user.inacative');
 });
 
