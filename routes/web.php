@@ -28,6 +28,7 @@ Auth::routes();
 
 
 Route::group(['middleware' => 'auth'],function(){
+ 
  //-------user---------//
 	Route::prefix('user')->group(function()
 	{
@@ -40,6 +41,21 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('/active/{id}','Backend\UserController@active')->name('user.active');
 		Route::get('/inacative/{id}','Backend\UserController@inacative')->name('user.inacative');
 	});
+
+
+	//-------user---------//
+	Route::prefix('project')->group(function()
+	{
+		Route::get('/view','Backend\ProjectController@view')->name('project.view');
+		Route::get('/add','Backend\ProjectController@add')->name('project.add');
+		Route::post('/store','Backend\ProjectController@store')->name('project.store');
+		Route::get('/edit/{id}','Backend\ProjectController@edit')->name('project.edit');
+		Route::post('/update/{id}','Backend\ProjectController@update')->name('project.update');
+		Route::get('/delete/{id}','Backend\ProjectController@delete')->name('project.delete');
+		Route::get('/active/{id}','Backend\ProjectController@active')->name('project.active');
+		Route::get('/inacative/{id}','Backend\ProjectController@inacative')->name('project.inacative');
+	});
+
 
 
 	

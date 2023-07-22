@@ -30,6 +30,12 @@
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
 
+  <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css">
+
+  <link rel="stylesheet" href="{{ asset('backend') }}/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="{{ asset('backend') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 
@@ -188,6 +194,11 @@
 <script src="{{ asset('backend') }}/plugins/jquery-validation/additional-methods.min.js"></script>
 
 
+<script src="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.js"></script>
+
+
+<!-- Select2 -->
+<script src="{{ asset('backend') }}/plugins/select2/js/select2.full.min.js"></script>
 
 <script>
   $(function () {
@@ -221,7 +232,6 @@
 </script>
 
 
-
 <!--------delete-------->
 <script type="text/javascript">
  $(function(){
@@ -247,6 +257,34 @@
    })
   });
  });
+</script>
+
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+    });
+  </script>
+
+
+
+<script>
+  $(function () {
+    // Summernote
+    $('#summernote').summernote()
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
+    });
+  })
 </script>
 
 

@@ -27,8 +27,7 @@ class UserController extends Controller
 	  'name'       =>'required',
 	  'email'      =>'required|unique:users,email',
 	  'role_id'    =>'required',
-	  'password'   =>'required',
-	  'status'     =>'required'
+	  'password'   =>'required'
 	  ]);
 
   	$data = new User();
