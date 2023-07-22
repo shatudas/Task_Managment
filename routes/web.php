@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('/delete/{id}','Backend\UserController@delete')->name('user.delete');
 		Route::get('/active/{id}','Backend\UserController@active')->name('user.active');
 		Route::get('/inacative/{id}','Backend\UserController@inacative')->name('user.inacative');
+		Route::get('/password/view','Backend\UserController@passwordview')->name('user.password');
+        Route::post('/password/update','Backend\UserController@passwordupdate')->name('password.update');
+		
 	});
 
 

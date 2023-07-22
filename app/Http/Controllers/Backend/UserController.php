@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\Role;
+use Auth;
 
 
 class UserController extends Controller
@@ -92,10 +93,10 @@ class UserController extends Controller
    {
   
     $this->validate($request,[
-	  'name'       =>'required',
-	  'email'      =>'required',
-	  'role_id'    =>'required',
-	  'status'     =>'required'
+		  'name'       =>'required',
+		  'email'      =>'required',
+		  'role_id'    =>'required',
+		  'status'     =>'required'
 	  ]);
 
     $data = user::find($id);
@@ -117,6 +118,28 @@ class UserController extends Controller
     return redirect()->route('user.view')->with('success','data Update Successfully');
    }
 
+
+
+    public function passwordview(){
+	    return view('backend.user.edit_password');
+	   }
+
+
+	   public function passwordupdate(Request $request){
+	 
+      if(Auth::attempt(['id'=>Auth::user()->id,'password'=>$request->current_password]))
+	     {
+	      $user=User::find(Auth::User()->id);
+	      $user->password=bcrypt($request->new_password);
+	      $user->save();
+	      return redirect()->route('user.view')->with('success','password changed Successfully');
+	     }
+	     else
+	     {
+	      return redirect()->back()->with('error','Sorry! your current password dost not match');
+	     }
+	   	
+	   	}
 
 
 }

@@ -47,6 +47,12 @@
                   <p>View User</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('user.password') }}" class="nav-link {{($route=='user.password')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Change password</p>
+                </a>
+              </li>
             </ul>
           </li>
 
